@@ -3,7 +3,10 @@
   "version": "0.1.2",
   "main": "dist/index.js",
   "description": "Mock adapter for Axios HTTP requests",
-  "repository": "https://github.com/reagent/axios-http-mock",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reagent/axios-http-mock.git"
+  },
   "author": "Patrick Reagan <github@the-reagans.com>",
   "license": "MIT",
   "scripts": {
