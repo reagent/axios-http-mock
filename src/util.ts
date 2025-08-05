@@ -1,8 +1,9 @@
 import {
   AxiosError,
   AxiosPromise,
-  AxiosRequestConfig,
+  InternalAxiosRequestConfig,
   RawAxiosRequestHeaders,
+  AxiosResponse,
 } from 'axios';
 import { Request } from './request';
 import { Headers, Method, METHODS } from './types';
@@ -11,9 +12,16 @@ import { Headers, Method, METHODS } from './types';
 // exported. See:
 //   https://github.com/axios/axios/blob/f2547d0e030eab3dfa22d39b4a71c8f90fd8c2b9/lib/core/settle.js
 //
-const settle = (request: Request, config: AxiosRequestConfig): AxiosPromise => {
+const settle = (
+  request: Request,
+  config: InternalAxiosRequestConfig
+): AxiosPromise => {
   return new Promise((resolve, reject) => {
-    const response = { ...request.response, config: config };
+    const response: AxiosResponse = {
+      ...request.response,
+      config,
+      request: undefined,
+    };
 
     const validateStatus = config.validateStatus;
     if (
