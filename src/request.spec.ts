@@ -37,14 +37,14 @@ describe(Request.name, () => {
     beforeEach(() => (subject = new Request('get')));
 
     it('throws an exception when there is no configured response', () => {
-      expect(() => subject.response).toThrowError(
+      expect(() => subject.response).toThrow(
         'Response not configured for request: {"method":"get"}'
       );
     });
 
     it('throws an exception when the response should time out', () => {
       subject.timeout();
-      expect(() => subject.response).toThrowError('Timeout');
+      expect(() => subject.response).toThrow('Timeout');
     });
 
     it('responds the configured HTTP status and message', () => {
